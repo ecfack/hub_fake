@@ -1,0 +1,396 @@
+.courseList__sidenav {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5vw;
+    padding-right: 10px;
+    height: 82vh;
+    width: 30vw;
+    margin-top: calc(9vh + 30px);
+}
+
+.block_title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+
+    &>p {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+
+        &::after {
+            position: absolute;
+            display: inline-block;
+            content: "";
+            top: 50%;
+            margin-left: 10px;
+            height: 1px;
+            width: 100%;
+            background: #CBCBCB
+        }
+    }
+}
+
+.quick_search_area {
+    position: relative;
+    z-index: 200;
+    height: 48px;
+    width: 100%;
+
+    &.filter_mode{
+        & .quick_search_input {
+            cursor: pointer;
+            background-image: none;
+            color: #1A6CBD;
+            transition: 0.2s cubic-bezier(0, 0, 0.2, 1)
+        }
+        
+        &:hover .quick_search_input {
+            color: #9B9B9B;
+            text-decoration: line-through;
+            box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.06)
+        }
+        
+        &:hover .quick_search_clear_filter {
+            background-color: #9B9B9B
+        }
+        
+        &:active .quick_search_clear_filter {
+            filter: brightness(80%)
+        }
+    }
+}
+
+.quick_search_input {
+    position: relative;
+    width: calc(100% - 67px);
+    font-size: 14px;
+    padding: 16px 0;
+    padding-left: 50px;
+    padding-right: 15px;
+    background-image: url("../../assets/images/table/icon_data.svg");
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: 18px center;
+    box-sizing: content-box;
+    border: #eee 1px solid;
+    box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: box-shadow 0.2s cubic-bezier(0, 0, 0.2, 1);
+
+    &:hover {
+        box-shadow: 0 0 28px 0 rgba(0, 0, 0, 0.1)
+    }
+    
+    &:focus {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        box-shadow: 0 0 28px 0 rgba(0, 0, 0, 0.1);
+        outline: none
+    }
+
+    &::placeholder {
+        color: #4A4A4A
+    }
+}
+
+.quick_search_delete {
+    display: none;
+    position: absolute;
+    left: 85%;
+    bottom: 23%;
+    border-radius: 30px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    background-image: url("../../assets/images/table/icon_delete.svg")
+}
+
+.courseList__sidenav__courseType {
+    height: 100px;
+    width: 100%;
+    margin-top: 1vh
+}
+
+.quick_search_custom {
+    padding: 14px 50px 14px 19px;
+    background-color: #fff;
+    box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.06);
+    border: #eee 1px solid;
+    box-sizing: content-box;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s cubic-bezier(0, 0, 0.2, 1), padding 0.3s cubic-bezier(0, 0, 0.2, 1);
+
+    &:hover {
+        box-shadow: 0 0 28px 0 rgba(0, 0, 0, 0.1)
+    }
+    
+    &--btn {
+        margin-top: 10px;
+        cursor: pointer;
+
+        & p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap
+        }
+
+        &:hover {
+            padding: 14px 50px 14px 24px;
+    
+            & p {
+                color: #F35A5A;
+                font-weight: bold;
+                padding-left: 12px
+            }
+        }
+        
+        &:active {
+            filter: brightness(99%)
+        }
+    }
+    
+    & img {
+        width: 17px;
+        height: auto
+    }
+    
+    & p {
+        transition: 0.2s cubic-bezier(0, 0, 0.2, 1);
+        padding-left: 14px
+    }
+    
+    & input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0
+    }
+    
+    & span:nth-child(3) {
+        padding-left: 14px
+    }
+
+    & input:checked~.checkmark {
+        background-color: #1A6CBD;
+    
+        &:after {
+            display: block
+        }
+    }
+    
+    & .checkmark:after {
+        left: 25px;
+        top: 17px;
+        width: 5px;
+        height: 10px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg)
+    }
+}
+
+.checkmark {
+    height: 17px;
+    width: 17px;
+    border-radius: 2px;
+    background-color: #eee;
+
+    &:after {
+        content: "";
+        position: absolute;
+        display: none
+    }
+}
+
+.wishlist {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &.in_course {
+        margin-top: 1.5vh;
+        height: calc(82vh - 200px - 2.5vh)
+    }
+    
+    &_cont {
+        height: 100%;
+        width: 100%;
+        background: #fff;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        border: #eee 1px solid;
+        box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.06);
+        transition: box-shadow 0.2s cubic-bezier(0, 0, 0.2, 1);
+
+        &:hover {
+            box-shadow: 0 0 28px 0 rgba(0, 0, 0, 0.1)
+        }
+        
+        &__no_result {
+            display: flex;
+            padding: 22px;
+            align-items: center
+        }
+    }
+}
+
+.list_course_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-bottom: #eee 1px solid;
+    width: 100%;
+    height: 70px;
+    transition: 0.2s cubic-bezier(0, 0, 0.2, 1);
+    background: white;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #FAFAFA;
+
+        & .list_course_item_category.clickable {
+            background-image: url("../../assets/images/table/icon_close.svg");
+            background-size: 16px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #CBCBCB;
+            color: rgba(0, 0, 0, 0);
+            transition: background-color 0.2s cubic-bezier(0, 0, 0.2, 1), background-size 0.2s cubic-bezier(0, 0, 0.2, 1);
+
+            &:hover {
+                background-color: #c62828;
+                background-size: 14px
+            }
+            
+            &:active {
+                filter: brightness(80%)
+            }
+        }
+        
+        & .list_course_item_button {
+            background-size: 16px;
+            background-color: #1A6CBD;
+            margin-right: -8px;
+
+            &:active {
+                filter: brightness(80%)
+            }
+        }
+    }
+    
+    &:active {
+        filter: brightness(98%);
+
+        & .list_course_item_button {
+            filter: brightness(80%)
+        }
+    }
+
+    &_left {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-left: 2%;
+        width: auto;
+        padding: 0 13px;
+        height: 100%
+    }
+    
+    &_mid {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        height: 100%;
+        padding-left: 10px;
+
+        &>p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin: 0;
+        }
+    }
+    
+    &_right {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-right: 2%;
+        width: auto;
+        padding: 0 19px;
+        height: 100%
+    }
+    
+    &_category {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        font-weight: 100;
+        background-color: #9B9B9B;
+        border-radius: 100%;
+        transition: background-color 0.1s cubic-bezier(0, 0, 0.2, 1);
+
+        &.A9 {
+            background: #F35A5A
+        }
+        
+        &.A6 {
+            background: #18ABD6
+        }
+        
+        &.A7 {
+            background: #FF6097
+        }
+        
+        &.A1 {
+            background: #17CF94
+        }
+        
+        &.A2 {
+            background: #1A6CBD
+        }
+    }
+    
+    &_button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background-image: url("../../assets/images/table/icon_arrow_right.svg");
+        background-color: #eee;
+        background-size: 14px;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 100%;
+        transition: 0.2s cubic-bezier(0, 0, 0.2, 1);
+    }
+    
+}
+
+::-webkit-scrollbar {
+    display: none;
+}

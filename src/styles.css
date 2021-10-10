@@ -1,1 +1,114 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans");
+
+body {
+    font-family: "Roboto", sans-serif;
+    overflow: hidden;
+    color: #4A4A4A;
+    background: #FAFAFA;
+    margin:0;
+}
+
+div {
+    box-sizing: border-box;
+}
+
+body,
+div,
+p,
+a,
+span {
+    font-size: 14px;
+    line-height: 150%;
+    color: #4A4A4A;
+    -moz-user-select: none;
+    -webkit-user-select: none
+}
+
+div p{
+    margin:0;
+    margin-top: 5px;
+}
+
+a {
+    text-decoration: none
+}
+
+.text_26 {
+    font-size: 20px
+}
+
+.text_24 {
+    font-size: 18px
+}
+
+.text_20 {
+    font-size: 16px
+}
+
+.text_18 {
+    font-size: 15px
+}
+
+.text_16 {
+    font-size: 14px
+}
+
+.text_14 {
+    font-size: 12px
+}
+
+.text_12 {
+    font-size: 10px
+}
+
+.text_dark {
+    color: #9B9B9B;
+    opacity: 0.8
+}
+
+.text_white {
+    color: #fff
+}
+
+.text_deep_blue {
+    color: #1A6CBD
+}
+
+.text_red {
+    color: #F35A5A
+}
+
+.text_bold {
+    font-weight: bold
+}
+
+button {
+    background-color: #eee;
+    border-radius: 5px;
+    box-shadow: none;
+    border-width: 0px
+}
+
+input[type=checkbox] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #eeeeee;
+    height: 17px;
+    width: 17px;
+    border-radius: 2px
+}
+
+input[type=checkbox]:checked {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #1A6CBD
+}
+
+input[type=checkbox]:focus {
+    outline: none
+}
+
+::-webkit-scrollbar {
+    display: none
+}
