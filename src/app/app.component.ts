@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 
-import { Course } from "./course"
+import { Subscription } from 'rxjs';
+
+import { Course } from "./course";
+import { CourseService } from "./course.service"
 import { WishService } from './wish.service';
 
 @Component({
@@ -10,9 +13,15 @@ import { WishService } from './wish.service';
 })
 export class AppComponent {
   title = 'hub-fake';
+  courseListStatus=false;
 
-  constructor(private wishService: WishService) { }
+  constructor() { }
 
   ngOnInit() {
+  }
+
+  getCourseListstatus(status:boolean) {
+    this.courseListStatus=status;
+    console.log(this.courseListStatus);
   }
 }

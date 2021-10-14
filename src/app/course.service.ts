@@ -3,13 +3,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Course, CourseInfo } from "./course";
 
-import { Observable, of } from 'rxjs';
+import { Observable, of,Subject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
+
+  private courseList: Course[]=[];
+  public courseListSubject:Subject<Course[]> = new Subject();
 
   private courseUrl = "https://nckuhub.com/course";
   private courseInfoUrl = "https://nckuhub.com/course/Info";
@@ -26,21 +29,50 @@ export class CourseService {
   }
 
   constructor(private http: HttpClient) {
+    // this.queryCourses().subscribe((element)=>{
+    //   // this.courseList = Array.from(element);
+    //   element.forEach(element => {this.courseList.push(element);})
+    //   console.log("載入課程成功");
+    // });
+    this.queryCourses().subscribe(this.courseListSubject);
+
+    this.courseListSubject.subscribe((element)=>{
+      this.courseList = element;
+      // element.forEach(element => {this.courseList.push(element);})
+      // this.courseList.push(element[0]);
+      console.log("遠端獲取課程成功");
+    });
   }
 
-  getCourses(): Observable<Course[]> {
+  queryCourses(): Observable<Course[]> {
     return this.http.get<CoursesRes>(this.courseUrl).pipe(
       map((element) => this.CoursesRestoCourses(element)),
       catchError(this.handleError<Course[]>('getCourses', []))
     );
   }
 
-  getCourse(id: number): Observable<Course> {
+  queryCourse(id: number): Observable<Course> {
     let courseInfoIdUrl = this.courseInfoUrl + "/" + id;
     return this.http.get<RawCourseInfo>(courseInfoIdUrl).pipe(
       map((element) => this.CourseInfotoCourse(element)),
       catchError(this.handleError<Course>('getCourses', new Course()))
     );
+  }
+
+  getCourses():Course[]{
+    // return Array.from(this.courseList);
+    return this.courseList;
+  }
+
+  getCourse(id: number):Course{
+    let course=this.courseList.find(element => element.info.id===id);
+
+    if(typeof course === "undefined"){
+      return new Course();
+    }
+    else{
+      return new Course(course.info);
+    }
   }
 
   CoursesRestoCourses(coursesRes: CoursesRes): Course[] { //把所有課程轉為Course()

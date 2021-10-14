@@ -1,5 +1,8 @@
 import { Component, OnInit,Output, EventEmitter} from '@angular/core';
 
+import { Observable, of,Subject } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+
 import { CourseService } from '../course.service';
 import { WishService } from '../wish.service';
 import { Course} from '../course';
@@ -19,10 +22,17 @@ export class CourseListComponent implements OnInit {
     this.getCourses();
   }
 
+  @Output() courseListGottenEvent = new EventEmitter<boolean>();
+
+  gottenCourseListEvent(value:boolean){
+    this.courseListGottenEvent.emit(value);
+  }
+
   getCourses(): void {
-    this.courseService.getCourses().subscribe(
+    this.courseService.courseListSubject.subscribe(
       (element)=>{
-        this.courseList = element;
+        this.courseList = this.courseService.getCourses();
+        this.gottenCourseListEvent(true);
         console.log("載入課程成功");
       }
     );

@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CourseFilterComponent } from './course-filter/course-filter.component';
 import { CourseListComponent } from './course-list/course-list.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     CourseFilterComponent,
-    CourseListComponent
+    CourseListComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

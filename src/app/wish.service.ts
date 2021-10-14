@@ -10,17 +10,22 @@ export class WishService {
 
   private wishList:Course[]=[];
 
-  constructor(private courseService:CourseService) { }
+  constructor(private courseService:CourseService) { 
+
+  }
 
   getWishes(): Course[] {
     return this.wishList;
   }
 
   addWish(course_id:number) {
-    this.courseService.getCourse(course_id).subscribe((element)=>{
-      this.wishList.push(element);
+    // this.courseService.getCourse(course_id).subscribe((element)=>{
+    //   this.wishList.push(element);
+    //   console.log("新增願望成功");
+    // });
+    let course=this.courseService.getCourse(course_id);
+    this.wishList.push(course);
       console.log("新增願望成功");
-    });
   }
 
   deleteWish(dept_id:string,course_order:string) {

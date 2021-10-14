@@ -1,0 +1,82 @@
+.circle {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  top: calc(50vh - 200px);
+  left: calc(50vw - 200px);
+  height: 400px;
+  width: 400px;
+  background: white;
+  border: gray 5px solid;
+  border-radius: 100%;
+  animation-name: colorChange;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  /* box-shadow: 0 0 28px 28px rgba(0, 0, 0, 0.1); */
+}
+
+.rect {
+  position: absolute;
+  box-sizing: border-box;
+  width: 5%;
+  background: white;
+  border-radius: 40px;
+  animation-name: colorChange;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+.r1 {
+  top: 40%;
+  left: 30%;
+  height: 20%;
+}
+
+.r2 {
+  top: 27.5%;
+  left: 41.5%;
+  height: 27.5%;
+}
+
+.r3 {
+  top: 45.5%;
+  left: 53.5%;
+  height: 27.5%;
+}
+
+.r4 {
+  top: 40%;
+  left: 65%;
+  height: 20%;
+}
+
+.bg {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background: white;
+  z-index: 101;
+}
+
+@keyframes colorChange {
+  0% {
+    background: white;
+  }
+
+  100% {
+    background: #18abd6;
+  }
+}
+
+@keyframes rectMove {
+    0% {
+        top: 100%;
+    }
+
+    100% {
+        bottom: 100%;
+    }
+}

@@ -1,3 +1,7 @@
+<div *ngIf="!courseListStatus">
+  <app-loading></app-loading>
+</div>
+
 <div>
   <app-navbar></app-navbar>
 </div>
@@ -5,6 +9,6 @@
 <div>
   <div class="course__whole">
     <app-course-filter></app-course-filter>
-    <app-course-list></app-course-list>
+    <app-course-list (courseListGottenEvent)="getCourseListstatus($event)"></app-course-list>
   </div>
 </div>
