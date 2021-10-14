@@ -31,8 +31,11 @@ export class CourseListComponent implements OnInit {
   getCourses(): void {
     this.courseService.courseListSubject.subscribe(
       (element)=>{
-        this.courseList = this.courseService.getCourses();
+        // this.gottenCourseListEvent(true);
         this.gottenCourseListEvent(true);
+        this.courseList = element;
+        // this.courseList.push(this.courseService.getCourses()[0]);
+        
         console.log("載入課程成功");
       }
     );

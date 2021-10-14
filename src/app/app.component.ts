@@ -21,6 +21,7 @@ export class AppComponent {
   }
 
   getCourseListstatus(status:boolean) {
+    // setTimeout(() => {this.courseListStatus=status},0);
     this.courseListStatus=status;
     console.log(this.courseListStatus);
   }
